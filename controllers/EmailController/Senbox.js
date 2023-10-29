@@ -2,8 +2,8 @@ import {Email} from '../../models/Email.js'
 
 const Sendbox=async(req,res)=>{
     try {
-     const {userid} = req.params ;
-      const userEmail= await Email.findById(userid).populate('send');
+     
+      const userEmail= await Email.findOne({user:req.user._id}).populate('send');
 
     if(userEmail){
         const SendEmail= userEmail.send;
@@ -11,7 +11,8 @@ const Sendbox=async(req,res)=>{
            SendEmail,
            message:"Message retrived successfully"
        }) 
-
+    }else{
+        res.status(404).send("No user Found");
     }
         
     } catch (error) {

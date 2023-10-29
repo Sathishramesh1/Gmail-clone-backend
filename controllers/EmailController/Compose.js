@@ -19,7 +19,7 @@ const Compose=async (req,res)=>{
          { upsert: true, new: true });
          //storing mail in sender send box
      await Email.findOneAndUpdate({user:sender._id}
-            ,{$push:{send:{...req.body}}},
+            ,{$push:{send:{...req.body,date:date}}},
             { upsert: true, new: true });
            
                 res.status(201).json({meassage:"mail send"});

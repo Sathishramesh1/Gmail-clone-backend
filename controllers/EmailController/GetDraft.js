@@ -4,7 +4,7 @@ import {Email} from '../../models/Email.js'
 const GetDraft=async(req,res)=>{
     try {
         
-const userEmail= await Email.findById(req.user_id).populate('draft'); 
+const userEmail= await Email.findOne({user:req.user_id}).populate('draft'); 
        if(userEmail){
           const DraftMail=userEmail.draft;
           res.status(200).json({

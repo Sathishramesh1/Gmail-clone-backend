@@ -3,8 +3,8 @@ import {Email} from '../../models/Email.js'
 
 const Inbox=async(req,res)=>{
     try {
-     const {userid} = req.params ;
-      const userEmail= await Email.findById(userid).populate('inbox'); 
+    
+      const userEmail= await Email.findOne({user:req.user._id}).populate('inbox'); 
     if(userEmail){
        const InboxMail=userEmail.inbox;
        res.status(200).json({
@@ -12,7 +12,7 @@ const Inbox=async(req,res)=>{
            message:"Message retrived successfully"
        }) 
     }else{
-        res.status(404).send("problem in retriving inbox mails");
+        res.status(404).send("problem in retriving inbox mails or no user found");
     }
         
     } catch (error) {

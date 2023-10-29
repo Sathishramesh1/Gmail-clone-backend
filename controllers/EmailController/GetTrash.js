@@ -3,8 +3,7 @@ import {Email} from '../../models/Email.js'
 
 const GetTrash=async(req,res)=>{
 
-   try {
-     
+   try { 
     const TrashEmail=await Email.findOne({user:req.user._id});
      
      if(TrashEmail){

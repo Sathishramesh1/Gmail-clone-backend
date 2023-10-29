@@ -18,19 +18,19 @@ const router=express.Router();
 router.route("/send").post(Compose);
 
 //router for reading inbox
-router.route("/inbox/:userid").get(Inbox);
+router.route("/inbox").get(Inbox);
 
 
 //router for reading sendbox
-router.route("/send/:userid").get(Sendbox);
+router.route("/send").get(Sendbox);
 
 
 //router marking email as starred
-router.route("/starred/:userid/:messageid").patch(StaredEmail);
+router.route("/starred/:messageid").patch(StaredEmail);
 
 
 //router for marking message as important
-router.route('/important/:userid/:messageid').patch(ImportantEmail);
+router.route('/important/:messageid').patch(ImportantEmail);
 
 
 //route for deleting message
@@ -49,7 +49,7 @@ router.route('/draft').post(SaveDraft);
 router.route('/getdraft').get(GetDraft);
 
 
-//route for upload
+//route for upload files
 router.route('/upload').post(handler)
 
 
