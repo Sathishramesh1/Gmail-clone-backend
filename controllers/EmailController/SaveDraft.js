@@ -1,4 +1,4 @@
-import { Email } from "../models/Email.js"
+import { Email, date } from "../../models/Email.js"
 
 
 const SaveDraft=async(req,res)=>{
@@ -8,7 +8,7 @@ try {
     
       if(to||subject||content){
         const saveEmail=await Email.findOneAndUpdate({user:req.user._id}
-            ,{$push:{inbox:{...req.body}}},
+            ,{$push:{inbox:{...req.body,date:date}}},
             { upsert: true, new: true });    
      }
 

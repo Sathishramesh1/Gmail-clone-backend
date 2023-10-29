@@ -19,7 +19,8 @@ const EmailSchema=new mongoose.Schema({
             type:Boolean,
             default:false
         },
-        date: String
+        date: String,
+        attachment: String
 
     }],
     send:[{
@@ -35,7 +36,8 @@ const EmailSchema=new mongoose.Schema({
             type:Boolean,
             default:false
         },
-        date: String
+        date: String,
+        attachment: String
 
     }],
     draft:[{
@@ -51,7 +53,8 @@ const EmailSchema=new mongoose.Schema({
             type:Boolean,
             default:false
         },
-        date: String
+        date: String,
+        attachment: String
 
     }],
     trash:[{
@@ -67,7 +70,8 @@ const EmailSchema=new mongoose.Schema({
             type:Boolean,
             default:false
         },
-        date: String
+        date: String,
+        attachment: String
 
     }]
 
@@ -78,3 +82,5 @@ const EmailSchema=new mongoose.Schema({
 const Email=new mongoose.model("Email",EmailSchema);
 
 export {Email}
+
+export const date=new Date().toLocaleDateString + ""+new Date().toLocaleTimeString() ;

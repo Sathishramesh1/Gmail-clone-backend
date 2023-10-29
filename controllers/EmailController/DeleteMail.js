@@ -1,4 +1,4 @@
-import {Email} from '../models/Email.js'
+import {Email} from '../../models/Email.js'
 
 const DeleteEmail=async(req,res)=>{
     try {

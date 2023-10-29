@@ -1,8 +1,8 @@
 import express from 'express'
-import {Register} from '../controllers/Register.js'
-import {Login} from '../controllers/Login.js'
-import {Forget} from '../controllers/Forget.js'
-import {Reset} from '../controllers/Reset.js'
+import {Register} from '../controllers/UserController/Register.js'
+import {Login} from '../controllers/UserController/Login.js'
+import {Forget} from '../controllers/UserController/Forget.js'
+import {Reset} from '../controllers/UserController/Reset.js'
 
 
 const router=express.Router();

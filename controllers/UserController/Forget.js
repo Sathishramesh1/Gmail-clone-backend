@@ -1,6 +1,6 @@
-import {User} from '../models/User.js'
+import {User} from '../../models/User.js'
 import crypto from 'crypto'
-import {sendMail} from '../service/mailService.js'
+import {sendMail} from '../../service/mailService.js'
 
 
 const Forget = async(req,res)=>{

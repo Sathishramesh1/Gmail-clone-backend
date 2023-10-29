@@ -1,6 +1,6 @@
 
-import {User} from '../models/User.js'
-import {Email} from '../models/Email.js'
+import {User} from '../../models/User.js'
+import {Email, date} from '../../models/Email.js'
 
 
 const Compose=async (req,res)=>{
@@ -11,11 +11,11 @@ const Compose=async (req,res)=>{
       const receiver= await User.findOne({email:to});
       
       const sender= await User.findOne({email:from});
-        console.log(sender,"sender",receiver,"reciver");
+        // console.log(sender,"sender",receiver,"reciver");
       if(receiver&&sender){
         // storing mail in reciver inbox 
      await Email.findOneAndUpdate({user:receiver._id}
-         ,{$push:{inbox:{...req.body}}},
+         ,{$push:{inbox:{...req.body,date:date}}},
          { upsert: true, new: true });
          //storing mail in sender send box
      await Email.findOneAndUpdate({user:sender._id}

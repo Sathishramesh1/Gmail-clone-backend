@@ -1,25 +1,24 @@
 import * as bcrypt from 'bcrypt'
-import {User} from '../models/User.js'
+import {User} from '../../models/User.js'
 import jwt from 'jsonwebtoken'
-import { getUserByEmail } from './common/user.js';
+
 
 const Login=async(req,res)=>{
-
     try {
         const {email,password}=req.body;
         let user= await User.findOne({email:email});
-       
+
 if (!user) {
-            return res.status(401).json({ message: "Email is not Registered" });
+    return res.status(401).json({ message: "Email is not Registered" });
       }
 
 const passwordMatch = await bcrypt.compare(password, user.password);
 
-        if (!passwordMatch) {
-            return res.status(401).json({ message: "Wrong Password" });
-          }
-           ;
-  const jwttoken = jwt.sign({id:user._id}, process.env.SECRET_KEY,{
+if (!passwordMatch) {
+         return res.status(401).json({ message: "Wrong Password" });
+      }
+           
+const jwttoken = jwt.sign({id:user._id}, process.env.SECRET_KEY,{
             expiresIn: "1h",
           });
         
