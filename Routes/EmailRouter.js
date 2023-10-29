@@ -5,6 +5,10 @@ import {StaredEmail} from '../controllers/StaredEmail.js'
 import {ImportantEmail} from '../controllers/ImportantEmail.js'
 import {DeleteEmail} from '../controllers/DeleteMail.js'
 import { Sendbox } from '../controllers/Senbox.js'
+import { SaveDraft } from '../controllers/SaveDraft.js'
+import { GetDraft } from '../controllers/GetDraft.js'
+import { GetTrash } from '../controllers/GetTrash.js'
+import handler from '../middleware/upload.js'
 
 
 
@@ -33,8 +37,21 @@ router.route('/important/:userid/:messageid').patch(ImportantEmail);
 router.route('/delete/:messageid').delete(DeleteEmail);
 
 
-//route for draft message
-router.route('/draft').post()
+//router for reading trash message
+router.route('/trash').get(GetTrash);
+
+
+//route for draft saving message
+router.route('/draft').post(SaveDraft);
+
+
+//route for reading draft messgae
+router.route('/getdraft').get(GetDraft);
+
+
+//route for upload
+router.route('/upload').post(handler)
+
 
 
 export { router as EmailRouter }

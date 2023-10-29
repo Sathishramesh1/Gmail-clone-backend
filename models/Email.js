@@ -51,7 +51,23 @@ const EmailSchema=new mongoose.Schema({
             type:Boolean,
             default:false
         },
-        date:String
+        date: String
+
+    }],
+    trash:[{
+        from: String,
+        to: String,
+        subject: String,
+        content: String,
+        starred:{
+            type:Boolean,
+            default:false
+        },
+        important:{
+            type:Boolean,
+            default:false
+        },
+        date: String
 
     }]
 

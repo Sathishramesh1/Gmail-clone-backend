@@ -14,7 +14,7 @@ router.route('/register').post(Register);
 router.route('/login').post(Login);
 
 //route for generating password reset mail
-router.route('forget').post(Forget);
+router.route('/forget').post(Forget);
 
 //route for resetting new password
 router.route('/reset/:resetToken').post(Reset);

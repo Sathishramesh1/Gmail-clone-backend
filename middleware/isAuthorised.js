@@ -8,7 +8,7 @@ import jwt from 'jsonwebtoken'
 
 
 // custom middleware
-const isAuthorized = async (req, res, next) => {
+const isAuthorized = async (req,res,next) => {
     let token;
     if (req.header) {
       try {
@@ -16,6 +16,7 @@ const isAuthorized = async (req, res, next) => {
         const decode = jwt.verify(token, process.env.SECRET_KEY);
         req.user = await getUserById(decode.id);
         next();
+        
       } catch (error) {
         console.log(error);
         res.status(500).json({ error: "Internal Server" });

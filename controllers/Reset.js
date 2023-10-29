@@ -15,7 +15,7 @@ try {
     return res.status(404).json({ message: "Invalid token" });
   }
    // Update the user's password and delete token
-   user.token = undefined;
+   user.resetToken = undefined;
    const hashedPassword = await bcrypt.hash(password,10);
    user.password = hashedPassword;
    await user.save();

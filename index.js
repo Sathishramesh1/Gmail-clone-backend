@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import dbconnection from './databse/dbconnection.js'
+import {dbconnection} from './databse/dbconnection.js'
 
 import {UserRouter} from './Routes/UserRouter.js'
 import {EmailRouter} from './Routes/EmailRouter.js'
