@@ -5,15 +5,32 @@ import {Email} from '../../models/Email.js'
 const ImportantEmail = async(req,res)=>{
    try {
     const {messageid}=req.params;
-     const userEmail= await Email.findOne({user:req.user._id}).populate('inbox') ;
-     
-    if(userEmail){
-    let changeValue=userEmail.inbox.find((message)=>message._id==messageid).important ; 
-    userEmail.inbox.find((message)=>message._id==messageid).important =!changeValue ;      
-    userEmail.save()
 
-       res.status(200).send("The message  is marked as important");
-     }else{
+    const checkEmail= await Email.findOne({
+      $or: [
+        { inbox: { $elemMatch: { _id: messageid } } },
+        { send: { $elemMatch: { _id: messageid } } },
+        { draft: { $elemMatch: { _id: messageid } } }
+      ]   
+     });
+     if (checkEmail) {
+      const inboxMessage = checkEmail.inbox.find(message => message._id == messageid);
+      const sendMessage = checkEmail.send.find(message => message._id == messageid);
+      const draftMessage = checkEmail.draft.find(message => message._id == messageid);
+  
+      if (inboxMessage) {
+        inboxMessage.important = !inboxMessage.important;
+      } else if (sendMessage) {
+        sendMessage.important = !sendMessage.important;
+      } else if (draftMessage) {
+        draftMessage.important = !draftMessage.important;
+      }
+  
+      await checkEmail.save();
+      res.status(200).send("The message is marked as important and vice versa");
+     
+    
+      }else{
          res.status(404).send(" Problem with marking email as important");
 } 
    } catch (error) {

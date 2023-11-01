@@ -4,13 +4,33 @@ import {Email} from '../../models/Email.js'
 const StaredEmail=async(req,res)=>{
     try {
      const {messageid}=req.params;
-     const userEmail= await Email.findOne({ user:req.user._id}).populate('inbox');
+   
+    const checkEmail= await Email.findOne({
+      $or: [
+        { inbox: { $elemMatch: { _id: messageid } } },
+        { send: { $elemMatch: { _id: messageid } } },
+        { draft: { $elemMatch: { _id: messageid } } }
+      ]   
+     });
+     if (checkEmail) {
+      const inboxMessage = checkEmail.inbox.find(message => message._id == messageid);
+      const sendMessage = checkEmail.send.find(message => message._id == messageid);
+      const draftMessage = checkEmail.draft.find(message => message._id == messageid);
+  
+      if (inboxMessage) {
+        inboxMessage.starred = !inboxMessage.starred;
+      } else if (sendMessage) {
+        sendMessage.starred = !sendMessage.starred;
+      } else if (draftMessage) {
+        draftMessage.starred = !draftMessage.starred;
+      }
+  
+      await checkEmail.save();
+      res.status(200).send("The message is marked");
      
-     if(userEmail){
-       let changeValue=userEmail.inbox.find((message)=>message._id==messageid).starred ; 
-       userEmail.inbox.find((message)=>message._id==messageid).starred =!changeValue ;      
-       userEmail.save()
-       res.status(200).send("The message  is marked ")
+     }else{
+      res.status(404).send("problem in retriving draft mails");
+
      }
       
     } catch (error) {

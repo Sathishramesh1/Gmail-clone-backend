@@ -9,6 +9,8 @@ import { SaveDraft } from '../controllers/EmailController/SaveDraft.js'
 import { GetDraft } from '../controllers/EmailController/GetDraft.js'
 import { GetTrash } from '../controllers/EmailController/GetTrash.js'
 import handler from '../middleware/upload.js'
+import { GetStarred } from '../controllers/EmailController/GetStarred.js'
+import { GetImportant } from '../controllers/EmailController/GetImportant.js'
 
 
 
@@ -29,8 +31,18 @@ router.route("/send").get(Sendbox);
 router.route("/starred/:messageid").patch(StaredEmail);
 
 
+//router get starred email
+router.route('/starred').get(GetStarred);
+
+
+
 //router for marking message as important
 router.route('/important/:messageid').patch(ImportantEmail);
+
+
+//router get starred email
+router.route('/important').get(GetImportant);
+
 
 
 //route for deleting message
