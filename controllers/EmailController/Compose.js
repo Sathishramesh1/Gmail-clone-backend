@@ -6,11 +6,11 @@ import {Email, date} from '../../models/Email.js'
 const Compose=async (req,res)=>{
     
     try {
-      const {from,to}=req.body;
+      const {to}=req.body;
         
       const receiver= await User.findOne({email:to});
       
-      const sender= await User.findOne({email:from});
+      const sender= await User.findOne({email:req.user._id});
         // console.log(sender,"sender",receiver,"reciver");
       if(receiver&&sender){
         // storing mail in reciver inbox 
