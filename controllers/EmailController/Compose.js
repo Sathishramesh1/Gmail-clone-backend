@@ -10,7 +10,7 @@ const Compose=async (req,res)=>{
         
       const receiver= await User.findOne({email:to});
       
-      const sender= await User.findOne({email:req.user._id});
+      const sender= await User.findOne({email:req.user.email});
         // console.log(sender,"sender",receiver,"reciver");
       if(receiver&&sender){
         // storing mail in reciver inbox 
