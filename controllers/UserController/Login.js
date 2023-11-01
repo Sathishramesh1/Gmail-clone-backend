@@ -18,9 +18,7 @@ if (!passwordMatch) {
          return res.status(401).json({ message: "Wrong Password" });
       }
            
-const jwttoken = jwt.sign({id:user._id}, process.env.SECRET_KEY,{
-            expiresIn: "1h",
-          });
+const jwttoken = jwt.sign({id:user._id}, process.env.SECRET_KEY);
         
           res.status(200).json({ jwttoken,message:"login success" });    
     } 
