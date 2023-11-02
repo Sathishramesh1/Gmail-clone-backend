@@ -20,7 +20,7 @@ try {
   await user.save();
   
   //send password resetting mail
-  sendMail(email,"password-reset","password reset link");
+  sendMail(email,"password-reset",`password reset link${token}`);
 
   res.status(200).json({message:`The password reset mail send to ${email}`})
 
