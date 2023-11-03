@@ -8,6 +8,7 @@ const EmailSchema=new mongoose.Schema({
     },
     inbox:[{
         from: String,
+        sender_name:String,
         to: String,
         subject: String,
         content: String,
@@ -25,6 +26,7 @@ const EmailSchema=new mongoose.Schema({
     }],
     send:[{
         from: String,
+        reciver_name:String,
         to: String,
         subject: String,
         content: String,
@@ -58,20 +60,6 @@ const EmailSchema=new mongoose.Schema({
 
     }],
     trash:[{
-        from: String,
-        to: String,
-        subject: String,
-        content: String,
-        starred:{
-            type:Boolean,
-            default:false
-        },
-        important:{
-            type:Boolean,
-            default:false
-        },
-        date: String,
-        attachment: String
 
     }]
 
@@ -83,4 +71,4 @@ const Email=new mongoose.model("Email",EmailSchema);
 
 export {Email}
 
-export const date=new Date().toLocaleDateString + ""+new Date().toLocaleTimeString() ;
+export const date=new Date().toLocaleDateString()+" "+new Date().toLocaleTimeString() ;

@@ -15,11 +15,11 @@ const Compose=async (req,res)=>{
       if(receiver&&sender){
         // storing mail in reciver inbox 
      await Email.findOneAndUpdate({user:receiver._id}
-         ,{$push:{inbox:{...req.body,date:date}}},
+         ,{$push:{inbox:{...req.body,date:date,sender_name:sender.name}}},
          { upsert: true, new: true });
          //storing mail in sender send box
      await Email.findOneAndUpdate({user:sender._id}
-            ,{$push:{send:{...req.body,date:date}}},
+            ,{$push:{send:{...req.body,date:date,reciver_name:receiver.name}}},
             { upsert: true, new: true });
            
                 res.status(201).json({meassage:"mail send"});
