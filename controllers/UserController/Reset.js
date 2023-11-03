@@ -5,9 +5,9 @@ import bcrypt from 'bcrypt'
 //function for resetting password
 const Reset=async(req,res)=>{
 try {
-    const { resetToken } = req.params;
+    const { resetToken } = req.query;
     const { password } = req.body;
-
+   console.log(resetToken,"hello")
     // Finding the user  token
   const user = await User.findOne({ resetToken:resetToken });
 
