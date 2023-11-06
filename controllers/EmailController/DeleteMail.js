@@ -2,7 +2,7 @@ import {Email} from '../../models/Email.js'
 
 const DeleteEmail=async(req,res)=>{
     try {
-          const {messageid}=req.params ;
+          const {messageid}=req.query ;
        const checkEmail= await Email.findOne({
         $or: [
           { inbox: { $elemMatch: { _id: messageid } } },

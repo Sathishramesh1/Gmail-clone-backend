@@ -28,7 +28,7 @@ router.route("/send").get(Sendbox);
 
 
 //router marking email as starred
-router.route("/starred/:messageid").patch(StaredEmail);
+router.route("/starred").patch(StaredEmail);
 
 
 //router get starred email
@@ -37,7 +37,7 @@ router.route('/starred').get(GetStarred);
 
 
 //router for marking message as important
-router.route('/important/:messageid').patch(ImportantEmail);
+router.route('/important').patch(ImportantEmail);
 
 
 //router get starred email
@@ -46,7 +46,7 @@ router.route('/important').get(GetImportant);
 
 
 //route for deleting message
-router.route('/delete/:messageid').delete(DeleteEmail);
+router.route('/delete').delete(DeleteEmail);
 
 
 //router for reading trash message

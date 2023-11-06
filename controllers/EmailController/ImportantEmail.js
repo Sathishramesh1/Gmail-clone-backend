@@ -4,7 +4,7 @@ import {Email} from '../../models/Email.js'
 //marking and unmarking important email
 const ImportantEmail = async(req,res)=>{
    try {
-    const {messageid}=req.params;
+    const {messageid}=req.query;
 
     const checkEmail= await Email.findOne({
       $or: [
