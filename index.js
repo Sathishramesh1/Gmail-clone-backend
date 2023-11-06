@@ -23,6 +23,9 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 
+// Handle preflight requests for all routes
+app.options('*', cors());
+
 //database connection
 dbconnection();
 
