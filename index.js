@@ -10,21 +10,15 @@ import {isAuthorized} from './middleware/isAuthorised.js'
 //configuration .env files
 dotenv.config();
 
-const corsOptions = {
-    credentials: true,
-    origin: "*",
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    preflightContinue: true,
-  }
+
 
 //assign app to express server
 const app=express();
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 
 
-// Handle preflight requests for all routes
-app.options('*', cors());
+
 
 //database connection
 dbconnection();

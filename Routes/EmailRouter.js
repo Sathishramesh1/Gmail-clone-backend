@@ -28,7 +28,7 @@ router.route("/send").get(Sendbox);
 
 
 //router marking email as starred
-router.route("/starred").patch(StaredEmail);
+router.route("/starred").post(StaredEmail);
 
 
 //router get starred email
@@ -37,7 +37,7 @@ router.route('/starred').get(GetStarred);
 
 
 //router for marking message as important
-router.route('/important').patch(ImportantEmail);
+router.route('/important').post(ImportantEmail);
 
 
 //router get starred email
