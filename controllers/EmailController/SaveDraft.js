@@ -5,14 +5,14 @@ const SaveDraft=async(req,res)=>{
 
 try {
       const{to,subject,content}=req.body;
-    
-      if(to||subject||content){
-        const saveEmail=await Email.findOneAndUpdate({user:req.user._id}
-            ,{$push:{draft:{...req.body,date:date}}},
-            { upsert: true, new: true });    
+   //  console.log(req.body);
+   if(to||subject||content){
+    const saveEmail=await Email.findOneAndUpdate({user:req.user._id}
+    ,{$push:{draft:{...req.body,date:date}}},
+       { upsert: true, new: true });
+       
+      res.status(201).send("dradt saved"); 
      }
-
- 
     
 } catch (error) {
     
