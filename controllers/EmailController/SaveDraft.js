@@ -8,7 +8,7 @@ try {
     
       if(to||subject||content){
         const saveEmail=await Email.findOneAndUpdate({user:req.user._id}
-            ,{$push:{inbox:{...req.body,date:date}}},
+            ,{$push:{draft:{...req.body,date:date}}},
             { upsert: true, new: true });    
      }
 
