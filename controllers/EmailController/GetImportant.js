@@ -7,6 +7,10 @@ const GetImportant=async(req,res)=>{
 
     try {
         const ImportantEmails= await Email.aggregate([
+          {
+            $match:{user:req.user._id}
+    
+            },
             {
               $project: {
                 importantEmails: {

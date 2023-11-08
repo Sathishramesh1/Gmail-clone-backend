@@ -1,12 +1,14 @@
 import {Email} from '../../models/Email.js'
 
 
-
-
 const GetStarred=async(req,res)=>{
 
     try {
       const StarredEmails= await Email.aggregate([
+        {
+        $match:{user:req.user._id}
+
+        },
         {
           $project: {
             starredEmails: {
