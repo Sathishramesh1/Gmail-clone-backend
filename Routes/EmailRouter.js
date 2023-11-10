@@ -11,6 +11,7 @@ import { GetTrash } from '../controllers/EmailController/GetTrash.js'
 import handler from '../middleware/upload.js'
 import { GetStarred } from '../controllers/EmailController/GetStarred.js'
 import { GetImportant } from '../controllers/EmailController/GetImportant.js'
+import { RemoveTrash } from '../controllers/EmailController/RemoveTrash.js'
 
 
 
@@ -51,6 +52,10 @@ router.route('/delete').delete(DeleteEmail);
 
 //router for reading trash message
 router.route('/trash').get(GetTrash);
+
+
+//route for delete message from trash
+router.route('/trashDelete').delete(RemoveTrash);
 
 
 //route for draft saving message

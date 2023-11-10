@@ -15,7 +15,7 @@ const DeleteEmail=async(req,res)=>{
       
           
 
-    if (checkEmail) {
+if (checkEmail) {
       let deletedMessage;
      
      if(checkEmail.inbox.some((message)=>message._id==messageid)){
@@ -24,14 +24,14 @@ const DeleteEmail=async(req,res)=>{
       checkEmail.trash.push(deletedMessage);
          checkEmail.save();
      return res.status(200).send("message deleted");
-     }else if(checkEmail.send.some((message)=>message._id==messageid)){
+ }else if(checkEmail.send.some((message)=>message._id==messageid)){
       deletedMessage=checkEmail.send.find((message)=>message._id==messageid);
       checkEmail.send.pull(messageid);
       checkEmail.trash.push(deletedMessage);
          checkEmail.save();
      return res.status(200).send("message deleted");
 
-     }else if(checkEmail.draft.some((message)=>message._id==messageid)){
+  }else if(checkEmail.draft.some((message)=>message._id==messageid)){
      
       deletedMessage=checkEmail.draft.find((message)=>message._id==messageid);
       checkEmail.draft.pull(messageid);
