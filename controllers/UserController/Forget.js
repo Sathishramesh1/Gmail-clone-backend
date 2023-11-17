@@ -20,7 +20,9 @@ try {
   await user.save();
   
   //send password resetting mail
-  sendMail(email,"password-reset",`password reset link${token}`);
+  sendMail(email,"password-reset",`
+  Click below Link to Reset Your Password
+  https://gmail-clone96.netlify.app/reset/${token}`);
 
   res.status(200).json({message:`The password reset mail send to ${email}`})
 
